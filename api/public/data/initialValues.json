@@ -1,0 +1,42 @@
+[
+  {
+    "key": "id",
+    "label": "Id",
+    "value": "ABC_123",
+    "type": "text",
+    "description": "The id of the user"
+  },
+  {
+    "key": "age",
+    "label": "Age",
+    "value": "25",
+    "type": "text",
+    "description": "The age of the user"
+  },
+  {
+    "key": "gender",
+    "label": "Gender",
+    "value": "female",
+    "type": "select",
+    "options": [
+      "female",
+      "male",
+      "others"
+    ],
+    "description": "The gender of the user"
+  },
+  {
+    "key": "pin",
+    "label": "Pincode",
+    "value": "411018",
+    "type": "text",
+    "description": "The pincode the user resides in"
+  },
+  {
+    "key": "status",
+    "label": "Active",
+    "value": true,
+    "type": "check",
+    "description": "The user is active or not"
+  }
+]
