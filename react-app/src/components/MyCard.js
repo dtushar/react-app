@@ -15,7 +15,7 @@ class MyCard extends Component {
   }
 
   getValues() {
-    fetch("http://localhost:3001/api/initialvalues")
+    fetch("/api/initialvalues")
       .then(res => res.json())
       .then(res => {
         this.setState({ initilaValue: res, newValues: res });
@@ -27,7 +27,7 @@ class MyCard extends Component {
 
     axios({
       method: "post",
-      url: "http://localhost:3001/api/savevalues",
+      url: "/api/savevalues",
       data: this.state.newValues
     })
       .then(function(response) {
