@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Table, Button } from "react-bootstrap";
-import Select from "react-select";
+import { Button } from "react-bootstrap";
 import axios from "axios";
+
+import MyForm from "../component/MyForm.jsx";
 
 class MyCard extends Component {
   constructor(props) {
@@ -12,6 +13,10 @@ class MyCard extends Component {
       options: [],
       selectedOpt: ""
     };
+    this.handleChange= this.handleChange.bind(this);
+    this.selectedOption = this.selectedOption.bind(this);
+    this.getOptions = this.getOptions.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   getValues() {
@@ -23,8 +28,6 @@ class MyCard extends Component {
   }
 
   updateValues() {
-    
-
     axios({
       method: "post",
       url: "/api/savevalues",
@@ -40,7 +43,7 @@ class MyCard extends Component {
   selectedOption(data) {
     return { value: data, label: data };
   }
-  getOptins(data) {
+  getOptions(data) {
     let opt = [];
     data.forEach(d => {
       let a = { value: "", label: "" };
@@ -51,10 +54,10 @@ class MyCard extends Component {
     return opt;
   }
   handleSelectChange(option) {
-    
-  //  this.selectedOption(option.value);
+    //  this.selectedOption(option.value);
   }
   handleChange(data, newvalue) {
+    console.log(data)
     let newStateValue = [];
     newStateValue = this.state.newValues;
 
@@ -83,17 +86,24 @@ class MyCard extends Component {
       }
     }
     this.setState({ newValues: newStateValue });
-    
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getValues();
   }
 
   render() {
     return (
       <div>
-        {this.state.initilaValue ? (
+        {this.state.initilaValue.length>0 ? 
+        <MyForm 
+        displayData={this.state.initilaValue} 
+        handleInput = {this.handleChange}
+        selectedOption = {this.selectedOption}
+        getOptions = {this.getOptions}
+        handleSelectChange = {this.handleSelectChange}
+        />:null}
+        {/* {this.state.initilaValue ? (
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -119,7 +129,7 @@ class MyCard extends Component {
                         <Select
                           value={this.selectedOption(data.value)}
                           onChange={this.handleSelectChange}
-                          options={this.getOptins(data.options)}
+                          options={this.getOptions(data.options)}
                         />
                       ) : data.type === "check" ? (
                         <input type="checkbox" defaultChecked={data.value} />
@@ -131,11 +141,12 @@ class MyCard extends Component {
               })}
             </tbody>
           </Table>
-        ) : null}
+        ) : null} */}
 
         <Button variant="danger" onClick={() => this.updateValues()}>
           Save
         </Button>
+        
       </div>
     );
   }

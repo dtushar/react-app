@@ -3,7 +3,7 @@ import "./App.css";
 
 import { Container } from "react-bootstrap";
 
-import MyCard from "./components/MyCard";
+import MyCard from "./container/MyCard.jsx";
 
 class App extends Component {
   constructor(props) {
