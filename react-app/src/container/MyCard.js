@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
-import MyForm from "../component/MyForm.jsx";
+import MyForm from "../component/MyForm";
 
 class MyCard extends Component {
   constructor(props) {
@@ -57,7 +57,6 @@ class MyCard extends Component {
     //  this.selectedOption(option.value);
   }
   handleChange(data, newvalue) {
-    console.log(data)
     let newStateValue = [];
     newStateValue = this.state.newValues;
 
@@ -103,46 +102,6 @@ class MyCard extends Component {
         getOptions = {this.getOptions}
         handleSelectChange = {this.handleSelectChange}
         />:null}
-        {/* {this.state.initilaValue ? (
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Value</th>
-                <th>Discription</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.initilaValue.map(data => {
-                return (
-                  <tr key={data.key} style={{ cursor: "pointer" }}>
-                    <td>{data.label}</td>
-                    <td>
-                      {data.type === "text" ? (
-                        <input
-                          defaultValue={data.value}
-                          onChange={e =>
-                            this.handleChange(data, e.target.value)
-                          }
-                        />
-                      ) : data.type === "select" ? (
-                        <Select
-                          value={this.selectedOption(data.value)}
-                          onChange={this.handleSelectChange}
-                          options={this.getOptions(data.options)}
-                        />
-                      ) : data.type === "check" ? (
-                        <input type="checkbox" defaultChecked={data.value} />
-                      ) : null}
-                    </td>
-                    <td>{data.description}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        ) : null} */}
-
         <Button variant="danger" onClick={() => this.updateValues()}>
           Save
         </Button>
